@@ -1,19 +1,27 @@
-from pydantic_settings import BaseSettings
-from pathlib import Path
-from pydantic import BaseModel
+from mysql.connector import connect
+import os
+from dotenv import load_dotenv
 
 
-class DBSettings(BaseModel):
-    url: str = f"mysql+mysqldb://{username}:{password}@{hostname}/{databasename}"
-    echo: bool = True
+origins = [
+    "http://localhost",
+    "http://localhost:8080",
+    "http://example.com",
+]
+
+load_dotenv()
+
+username = os.getenv("USERNAME")
+password = os.getenv("PASSWORD")
+hostname = os.getenv("HOSTNAME")
+databasename = os.getenv("DATABASENAME")
 
 
-class Settings(BaseSettings):
-    api_v1_prefix: str = "/api/v1"
-
-    db: DBSettings = DBSettings()
-
-    # db_echo: bool = False
-
-
-settings = Settings()
+class DataBaseConn:
+    def __init__(self):
+        self.connection = connect(
+            host=hostname,
+            user=username,
+            password=password,
+            database=databasename,
+        )
