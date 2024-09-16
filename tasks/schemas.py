@@ -1,0 +1,16 @@
+from __future__ import annotations
+
+import datetime
+from typing import Annotated, Optional
+from annotated_types import MaxLen, MinLen
+
+from pydantic import BaseModel
+
+
+class CreateTask(BaseModel):
+    title: Annotated[str, MinLen(5), MaxLen(80)]
+    detail: Optional[str]
+    creation_date: datetime.date
+    execution_date: datetime.date
+    execution_mark: Annotated[str, MinLen(6), MaxLen(10)]
+    executors: list[int]
