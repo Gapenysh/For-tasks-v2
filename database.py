@@ -1,6 +1,9 @@
+from users.view import router as users_router
+from fastapi import FastAPI
 from mysql.connector import connect
 import os
 from dotenv import load_dotenv
+import pymysql
 
 
 origins = [
@@ -11,10 +14,16 @@ origins = [
 
 load_dotenv()
 
-username = os.getenv("USERNAME")
+username = "root"
 password = os.getenv("PASSWORD")
 hostname = os.getenv("HOSTNAME")
 databasename = os.getenv("DATABASENAME")
+
+
+print(username)
+print(password)
+print(hostname)
+print(databasename)
 
 
 class DataBaseConn:

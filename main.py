@@ -2,17 +2,13 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-from core.config import origins
+from database import origins
+from users.view import router as users_router
+from tasks.view import router as tasks_router
 
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    print("Приложение запускается")
-    yield
-    print("Приложение останавливается")
-
-
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(echo=False)
+app.include_router(users_router, tags=["Users"])
+app.include_router(tasks_router, tags=["Tasks"])
 
 app.add_middleware(
     CORSMiddleware,
