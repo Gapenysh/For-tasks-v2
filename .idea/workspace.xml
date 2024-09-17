@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Begin creating structure for api with MYSQL">
-      <change afterPath="$PROJECT_DIR$/tasks/schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/schemas.py" afterDir="false" />
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Make functions for view and creating (users, tasks)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/schemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/schemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,11 +144,29 @@
       <option name="project" value="LOCAL" />
       <updated>1725461823456</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add schemas for create requests">
+      <option name="closed" value="true" />
+      <created>1726520702319</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726520702319</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Make functions for view and creating (users, tasks)">
+      <option name="closed" value="true" />
+      <created>1726520803192</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726520803192</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Begin creating structure for api with MYSQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Begin creating structure for api with MYSQL" />
+    <MESSAGE value="Add schemas for create requests" />
+    <MESSAGE value="Make functions for view and creating (users, tasks)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make functions for view and creating (users, tasks)" />
   </component>
 </project>

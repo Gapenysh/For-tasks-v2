@@ -1,6 +1,7 @@
 from tasks.crud import Tasks
-from fastapi import APIRouter, requests
-from tasks.schemas import CreateTask
+from fastapi import APIRouter, Depends
+from tasks.schemas import Task, TaskUpdate
+
 
 router = APIRouter(prefix="/tasks")
 
@@ -12,7 +13,7 @@ def show_tasks():
 
 
 @router.post("/create")
-def create_task(task: CreateTask):
+def create_task(task: Task):
 
     success = Tasks.create_task(
         title=task.title,
@@ -27,3 +28,27 @@ def create_task(task: CreateTask):
         return {"message": "Task created successfully"}
     else:
         return {"message": "Failed to create task"}
+
+
+@router.get("/{id}")
+def show_task_from_id(task_id: int):
+    data = Tasks.get_task_by_id(task_id)
+    print(data)
+    return data
+
+
+@router.put("/{id}")
+def update_task(task_id: int, task: TaskUpdate):
+
+    success = Tasks.update_task(
+        id=task_id,
+        title=task.title,
+        detail=task.detail,
+        creat_date=task.creation_date,
+        exec_date=task.execution_date,
+        mark=task.execution_mark,
+    )
+    if success:
+        return {"message": "Task updated successfully"}
+    else:
+        return {"message": "Failed to update task"}

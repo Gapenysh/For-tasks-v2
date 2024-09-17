@@ -3,6 +3,7 @@ import datetime
 
 from mysql.connector import Error
 from database import DataBaseConn
+from .schemas import Task
 
 
 class Tasks:
@@ -28,6 +29,33 @@ class Tasks:
             cur.execute(stmt)
             result = cur.fetchall()
             print("get_tasks(показ задач) сработал корректно")
+            return result
+        except Error as e:
+            return str(e)
+
+    @staticmethod
+    def get_task_by_id(task_id: int):
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt = """SELECT tasks.title, 
+            tasks.detail, 
+            tasks.creation_date, 
+            tasks.execution_date, 
+            tasks.execution_mark,
+            GROUP_CONCAT(users.username ORDER BY users.username SEPARATOR ', ') AS executors
+            FROM task_users tu
+            INNER JOIN 
+            tasks ON tu.task_id = tasks.id
+            INNER JOIN 
+            users ON tu.user_id = users.id
+            WHERE tasks.id = %s
+            GROUP BY tu.task_id"""
+            cur.execute(stmt, (task_id,))
+            result = cur.fetchone()
+
+            cur.close()
+            conn.close()
             return result
         except Error as e:
             return str(e)
@@ -71,3 +99,27 @@ class Tasks:
         except Error as e:
             print("Ошибка получения доступа к БД: " + str(e))
             return None
+
+    @staticmethod
+    def update_task(id, title, detail, creat_date, exec_date, mark):
+        pass
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt = """UPDATE tasks
+            SET title = %s
+            detail = %s
+            creation_date = %s
+            execution_date = %s
+            execution_mark = %s
+            """
+            values = (title, detail, creat_date, exec_date, mark, id)
+            cur.execute(stmt, values)
+            conn.commit()
+            cur.close()
+            conn.close()
+            print("Обновление задачи прошло успешно")
+            return True
+        except Error as e:
+            print("Ошибка обновления задачи: " + str(e))
+            return False
