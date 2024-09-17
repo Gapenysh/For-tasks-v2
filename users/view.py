@@ -1,8 +1,8 @@
 from users.crud import Users
 from fastapi import APIRouter, requests
-from users.schemas import CreateUser
+from users.schemas import User
 
-router = APIRouter(prefix="/user")
+router = APIRouter(prefix="/users")
 
 
 @router.get("/")
@@ -12,7 +12,7 @@ def get_users():
 
 
 @router.post("/create")
-def create_users(user: CreateUser):
+def create_users(user: User):
 
     success = Users.add_user(username=user.username)
 
