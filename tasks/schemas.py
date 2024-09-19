@@ -22,3 +22,7 @@ class TaskUpdate(BaseModel):
     creation_date: Optional[datetime.date]
     execution_date: Optional[datetime.date]
     execution_mark: Optional[Annotated[str, MinLen(6), MaxLen(10)]]
+
+
+class TaskStatusUpdate(BaseModel):
+    status: Optional[Annotated[str, MinLen(6), MaxLen(10)]]
