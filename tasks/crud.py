@@ -102,16 +102,16 @@ class Tasks:
 
     @staticmethod
     def update_task(id, title, detail, creat_date, exec_date, mark):
-        pass
         try:
             conn = DataBaseConn().connection
             cur = conn.cursor()
             stmt = """UPDATE tasks
-            SET title = %s
-            detail = %s
-            creation_date = %s
-            execution_date = %s
+            SET title = %s,
+            detail = %s,
+            creation_date = %s,
+            execution_date = %s,
             execution_mark = %s
+            WHERE tasks.id = %s
             """
             values = (title, detail, creat_date, exec_date, mark, id)
             cur.execute(stmt, values)
@@ -123,3 +123,7 @@ class Tasks:
         except Error as e:
             print("Ошибка обновления задачи: " + str(e))
             return False
+
+    @staticmethod
+    def update_task_status(id, status):
+        pass

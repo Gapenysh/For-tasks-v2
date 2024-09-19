@@ -1,6 +1,6 @@
 from tasks.crud import Tasks
 from fastapi import APIRouter, Depends
-from tasks.schemas import Task, TaskUpdate
+from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate
 
 
 router = APIRouter(prefix="/tasks")
@@ -37,7 +37,17 @@ def show_task_from_id(task_id: int):
     return data
 
 
-@router.put("/{id}")
+@router.patch("/{id}")
+def update_task_status(task_id: int, task: TaskStatusUpdate):
+
+    success = Tasks.update_task_status(id=task_id, mark=task.status)
+    if success:
+        return {"message": "Task status updated successfully"}
+    else:
+        return {"message": "Failed to update task status"}
+
+
+@router.put("/{id}/redact")
 def update_task(task_id: int, task: TaskUpdate):
 
     success = Tasks.update_task(
