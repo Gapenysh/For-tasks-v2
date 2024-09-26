@@ -1,6 +1,8 @@
 from tasks.crud import Tasks
 from fastapi import APIRouter, Depends
+from fastapi.responses import StreamingResponse
 from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate
+from tasks.create_pdf import create_pdf
 from users.crud import Users
 from users.schemas import UpdateTaskUsers
 
@@ -94,3 +96,17 @@ def update_task_executors(id: int, users: UpdateTaskUsers):
 
     else:
         return {"message": "Failed to update task"}
+
+
+@router.get("/{id}/download")
+def download_pdf(id: int):
+    task = Tasks.get_task_by_id(task_id=id)
+    if task is None:
+        return {"message": f"Task with id = {id} not found"}
+
+    file = create_pdf(task)
+    return StreamingResponse(
+        file,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f"attachment; filename=task_{id}.pdf"},
+    )
