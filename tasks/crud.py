@@ -14,7 +14,8 @@ class Tasks:
         try:
             conn = DataBaseConn().connection
             cur = conn.cursor()
-            stmt = """SELECT tasks.title, 
+            stmt = """SELECT tasks.id,
+            tasks.title, 
             tasks.detail, 
             tasks.creation_date, 
             tasks.execution_date, 
@@ -38,7 +39,8 @@ class Tasks:
         try:
             conn = DataBaseConn().connection
             cur = conn.cursor()
-            stmt = """SELECT tasks.title, 
+            stmt = """SELECT tasks.id,
+            tasks.title, 
             tasks.detail, 
             tasks.creation_date, 
             tasks.execution_date, 
@@ -114,6 +116,7 @@ class Tasks:
             WHERE tasks.id = %s
             """
             values = (title, detail, creat_date, exec_date, mark, id)
+            print(type(values))
             cur.execute(stmt, values)
             conn.commit()
             cur.close()
@@ -126,4 +129,85 @@ class Tasks:
 
     @staticmethod
     def update_task_status(id, status):
-        pass
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt = """UPDATE tasks
+            SET execution_mark = %s
+            WHERE id = %s"""
+            values = (status, id)
+            cur.execute(stmt, values)
+            conn.commit()
+            cur.close()
+            conn.close()
+            print("Обновление статуса задачи прошло успешно")
+            return True
+        except Error as e:
+            print("Ошибка обновления задачи: " + str(e))
+            return False
+
+    @staticmethod
+    def update_task_executors(id, executors):
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            delete_stmt = """DELETE FROM task_users WHERE task_id = %s"""
+            cur.execute(delete_stmt, (id,))
+            if executors:
+                for executor_id in executors:
+                    stmt_task_users = (
+                        """INSERT INTO task_users (task_id, user_id) VALUES(%s, %s)"""
+                    )
+                    task_user_value = (id, executor_id)
+                    cur.execute(stmt_task_users, task_user_value)
+
+            conn.commit()
+            cur.close()
+            conn.close()
+            print(f"Обновление пользлвателей для задачи {id} прошло успешно")
+            return True
+        except Error as e:
+            print("Ошибка обновления задачи: " + str(e))
+            return False
+
+    @staticmethod
+    def get_info_by_status(status):
+
+        valid_status = {
+            "status1": "В очереди",
+            "status2": "В работе",
+            "status3": "Готово",
+        }
+
+        if status not in valid_status:
+            raise ValueError("Invalid status")
+
+        status = valid_status[status]
+        print(status)
+        try:
+            connection = DataBaseConn().connection
+            cursor = connection.cursor()
+            query = """SELECT tasks.id,
+            tasks.title, 
+            tasks.detail, 
+            tasks.creation_date, 
+            tasks.execution_date, 
+            tasks.execution_mark,
+            GROUP_CONCAT(users.username ORDER BY users.username SEPARATOR ', ') AS executors
+            FROM task_users tu
+            INNER JOIN 
+            tasks ON tu.task_id = tasks.id
+            INNER JOIN 
+            users ON tu.user_id = users.id
+            WHERE tasks.execution_mark = %s
+            GROUP BY tu.task_id"""
+
+            cursor.execute(query, (status,))
+
+            data = cursor.fetchall()
+            cursor.close()
+            connection.close()
+            print("get_info_by_status сработал")
+            return data
+        except Error as e:
+            return str(e)

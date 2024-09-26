@@ -5,11 +5,8 @@ import os
 from dotenv import load_dotenv
 import pymysql
 
-
 origins = [
-    "http://localhost",
-    "http://localhost:8080",
-    "http://example.com",
+    "http://localhost:4200",
 ]
 
 load_dotenv()

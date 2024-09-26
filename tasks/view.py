@@ -1,7 +1,8 @@
 from tasks.crud import Tasks
 from fastapi import APIRouter, Depends
 from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate
-
+from users.crud import Users
+from users.schemas import UpdateTaskUsers
 
 router = APIRouter(prefix="/tasks")
 
@@ -12,9 +13,16 @@ def show_tasks():
     return data
 
 
+@router.get("/get_{status}")
+def get_tasks_from_status(status: str):
+    tasks = Tasks.get_info_by_status(status=status)
+    return tasks
+
+
 @router.post("/create")
 def create_task(task: Task):
 
+    users = Users.get_users()
     success = Tasks.create_task(
         title=task.title,
         detail=task.detail,
@@ -31,16 +39,17 @@ def create_task(task: Task):
 
 
 @router.get("/{id}")
-def show_task_from_id(task_id: int):
-    data = Tasks.get_task_by_id(task_id)
-    print(data)
+def show_task_from_id(id: int):
+    data = Tasks.get_task_by_id(id)
+    if data is None:
+        return {"message": f"Task with id = {id} not found"}
     return data
 
 
 @router.patch("/{id}")
-def update_task_status(task_id: int, task: TaskStatusUpdate):
+def update_task_status(id: int, task: TaskStatusUpdate):
 
-    success = Tasks.update_task_status(id=task_id, mark=task.status)
+    success = Tasks.update_task_status(id=id, status=task.status)
     if success:
         return {"message": "Task status updated successfully"}
     else:
@@ -48,17 +57,40 @@ def update_task_status(task_id: int, task: TaskStatusUpdate):
 
 
 @router.put("/{id}/redact")
-def update_task(task_id: int, task: TaskUpdate):
+def update_task(id: int, task: TaskUpdate):
 
     success = Tasks.update_task(
-        id=task_id,
+        id=id,
         title=task.title,
         detail=task.detail,
         creat_date=task.creation_date,
         exec_date=task.execution_date,
         mark=task.execution_mark,
     )
+    task_from_id = show_task_from_id(id)
+    if success:
+        return {"message": "Task updated successfully", "task_from_id": task_from_id}
+    else:
+        return {"message": "Failed to update task"}
+
+
+@router.get("/{id}/redact_users")
+def show_task_from_id_redact_users(id: int):
+    data = Tasks.get_task_by_id(id)
+    print(data)
+    return data
+
+
+@router.put("/{id}/redact_users")
+def update_task_executors(id: int, users: UpdateTaskUsers):
+
+    success = Tasks.update_task_executors(
+        id,
+        executors=users.executors,
+    )
+
     if success:
         return {"message": "Task updated successfully"}
+
     else:
         return {"message": "Failed to update task"}

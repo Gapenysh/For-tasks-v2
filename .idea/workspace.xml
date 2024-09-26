@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Rename shemas">
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Add schema for updating status">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/crud.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/schemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/schemas.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +92,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="For_tasks_V2" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -113,7 +116,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.crud_test" />
       </list>
     </recent_temporary>
@@ -174,7 +176,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726597430503</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finish creating update method for tasks">
+      <option name="closed" value="true" />
+      <created>1726763207600</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726763207600</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add schema for updating status">
+      <option name="closed" value="true" />
+      <created>1726763238058</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726763238058</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -183,6 +201,8 @@
     <MESSAGE value="Make functions for view and creating (users, tasks)" />
     <MESSAGE value="Add schema for updating task and create function for updating(also getting info from id)" />
     <MESSAGE value="Rename shemas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rename shemas" />
+    <MESSAGE value="Finish creating update method for tasks" />
+    <MESSAGE value="Add schema for updating status" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add schema for updating status" />
   </component>
 </project>
