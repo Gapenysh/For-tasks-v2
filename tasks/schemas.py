@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict
 
 
 class Task(BaseModel):
-    title: Annotated[str, MinLen(5), MaxLen(150)]
+    title: Annotated[str, MinLen(5), MaxLen(600)]
     detail: Optional[str]
     creation_date: datetime.date
     execution_date: datetime.date
@@ -17,7 +17,7 @@ class Task(BaseModel):
 
 
 class TaskUpdate(BaseModel):
-    title: Optional[Annotated[str, MinLen(5), MaxLen(150)]]
+    title: Optional[Annotated[str, MinLen(5), MaxLen(600)]]
     detail: Optional[str]
     creation_date: Optional[datetime.date]
     execution_date: Optional[datetime.date]

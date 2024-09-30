@@ -61,7 +61,7 @@ def create_pdf(data):
         if executor is not None:
             c.drawString(xlist[0] + 15, y_start - (i + 2) * y_offset + 15, executor)
 
-    if detail is not None:
+    if detail != "нет":
         c.drawString(50, begin - (num_executors + 3) * y_offset - 55, detail)
 
     c.setFont("Arial-Bold", 14)

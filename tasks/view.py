@@ -58,6 +58,15 @@ def update_task_status(id: int, task: TaskStatusUpdate):
         return {"message": "Failed to update task status"}
 
 
+@router.delete("/{id}")
+def delete_task(id: int):
+    success = Tasks.delete_task(id)
+    if success is not None:
+        return {"message": f"Task with id = {id} was deleted successfully"}
+    else:
+        return {"message": f"Task {id} wasn't deleted"}
+
+
 @router.put("/{id}/redact")
 def update_task(id: int, task: TaskUpdate):
 
@@ -105,6 +114,7 @@ def download_pdf(id: int):
         return {"message": f"Task with id = {id} not found"}
 
     file = create_pdf(task)
+    print(f"Отправка пдф для {id} задачи")
     return StreamingResponse(
         file,
         media_type="application/pdf",

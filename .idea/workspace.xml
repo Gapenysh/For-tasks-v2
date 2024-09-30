@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Begin functional for sending pdf file">
-      <change afterPath="$PROJECT_DIR$/tasks/create_pdf.py" afterDir="false" />
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Add downloading pdf files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/test_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/create_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/create_pdf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/schemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727362503609</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add downloading pdf files">
+      <option name="closed" value="true" />
+      <created>1727376170027</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727376170027</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -218,6 +226,7 @@
     <MESSAGE value="Add schema for updating status" />
     <MESSAGE value="Add filters by status" />
     <MESSAGE value="Begin functional for sending pdf file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Begin functional for sending pdf file" />
+    <MESSAGE value="Add downloading pdf files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add downloading pdf files" />
   </component>
 </project>

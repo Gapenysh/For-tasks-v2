@@ -20,3 +20,12 @@ def create_users(user: User):
         return {"message": "User created successfully"}
     else:
         return {"message": "Failed to create user"}
+
+
+@router.delete("/{id}")
+def delete_users(id):
+    success = Users.delete_user(id)
+    if success is not None:
+        return {"message": f"User with id = {id} was deleted successfully"}
+    else:
+        return {"message": f"User {id} wasn't deleted"}

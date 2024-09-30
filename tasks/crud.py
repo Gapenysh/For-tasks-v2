@@ -3,10 +3,27 @@ import datetime
 
 from mysql.connector import Error
 from database import DataBaseConn
-from .schemas import Task
 
 
 class Tasks:
+
+    @staticmethod
+    def exist_task_id(id):
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt_check_user = """SELECT COUNT(*) FROM tasks WHERE id = %s"""
+            cur.execute(stmt_check_user, (id,))
+            user_exists = cur.fetchone()[0]
+
+            if user_exists == 0:
+                print(f"Задача c id = {id} не найдена")
+                return None
+            else:
+                return True
+        except Error as e:
+            print("Ошибка получения доступа к БД: " + str(e))
+            return None
 
     @staticmethod
     def get_tasks():
@@ -37,6 +54,7 @@ class Tasks:
     @staticmethod
     def get_task_by_id(task_id: int):
         try:
+
             conn = DataBaseConn().connection
             cur = conn.cursor()
             stmt = """SELECT tasks.id,
@@ -130,8 +148,12 @@ class Tasks:
     @staticmethod
     def update_task_status(id, status):
         try:
+            exist = Tasks.exist_task_id(id)
+            if exist is None:
+                return False
             conn = DataBaseConn().connection
             cur = conn.cursor()
+
             stmt = """UPDATE tasks
             SET execution_mark = %s
             WHERE id = %s"""
@@ -149,6 +171,9 @@ class Tasks:
     @staticmethod
     def update_task_executors(id, executors):
         try:
+            exist = Tasks.exist_task_id(id)
+            if exist is None:
+                return False
             conn = DataBaseConn().connection
             cur = conn.cursor()
             delete_stmt = """DELETE FROM task_users WHERE task_id = %s"""
@@ -211,3 +236,26 @@ class Tasks:
             return data
         except Error as e:
             return str(e)
+
+    @staticmethod
+    def delete_task(id):
+        try:
+            exist_task = Tasks.exist_task_id(id)
+            if exist_task is None:
+                return None
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt_task_users = """DELETE FROM task_users WHERE task_id = %s"""
+            stmt_tasks = """DELETE FROM tasks WHERE id = %s"""
+
+            cur.execute(stmt_task_users, (id,))
+            cur.execute(stmt_tasks, (id,))
+
+            conn.commit()
+            cur.close()
+            conn.close()
+            print("Удаление задачи сработало корректно")
+            return True
+        except Error as e:
+            print("Ошибка удаление задачи: " + str(e))
+            return None
