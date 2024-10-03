@@ -81,6 +81,21 @@ class Tasks:
             return str(e)
 
     @staticmethod
+    def get_users_from_task_id(id: int):
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt = """SELECT id, username FROM users
+                    INNER JOIN task_users ON users.id = task_users.user_id
+                    WHERE task_users.task_id = %s"""
+            cur.execute(stmt, (id,))
+            result = cur.fetchall()
+            print("Исполнители из задачи id = {id} были отправлены")
+            return result
+        except Error as e:
+            return str(e)
+
+    @staticmethod
     def create_task(
         title: str,
         detail: str,

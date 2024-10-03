@@ -15,7 +15,7 @@ def show_tasks():
     return data
 
 
-@router.get("/get_{status}")
+@router.get("/{status}")
 def get_tasks_from_status(status: str):
     tasks = Tasks.get_info_by_status(status=status)
     return tasks
@@ -50,6 +50,7 @@ def show_task_from_id(id: int):
 
 @router.patch("/{id}")
 def update_task_status(id: int, task: TaskStatusUpdate):
+    print(task.status)
 
     success = Tasks.update_task_status(id=id, status=task.status)
     if success:
@@ -87,9 +88,15 @@ def update_task(id: int, task: TaskUpdate):
 
 @router.get("/{id}/redact_users")
 def show_task_from_id_redact_users(id: int):
-    data = Tasks.get_task_by_id(id)
-    print(data)
-    return data
+    users = Tasks.get_users_from_task_id(id)
+    return users
+
+
+# @router.get("/{id}/redact_users")
+# def show_task_from_id_redact_users(id: int):
+#     data = Tasks.get_task_by_id(id)
+#     print(data)
+#     return data
 
 
 @router.put("/{id}/redact_users")
