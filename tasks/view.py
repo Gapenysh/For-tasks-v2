@@ -38,7 +38,6 @@ def get_tasks_from_status(status: str):
 @router.post("/create")
 def create_task(task: Task):
 
-    users = Users.get_users()
     success = Tasks.create_task(
         title=task.title,
         detail=task.detail,

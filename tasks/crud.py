@@ -283,19 +283,22 @@ class Tasks:
             cur = conn.cursor()
             placeholders = ", ".join(["%s"] * len(executors_id))
             stmt = f"""SELECT tasks.id,
-            tasks.title, 
-            tasks.detail, 
-            tasks.creation_date, 
-            tasks.execution_date, 
+            tasks.title,
+            tasks.detail,
+            tasks.creation_date,
+            tasks.execution_date,
             tasks.execution_mark,
             GROUP_CONCAT(users.username ORDER BY users.username SEPARATOR ', ') AS executors
             FROM task_users tu
-            INNER JOIN 
-            tasks ON tu.task_id = tasks.id
-            INNER JOIN 
-            users ON tu.user_id = users.id
-            WHERE users.id IN ({placeholders})
-            GROUP BY tu.task_id"""
+            INNER JOIN tasks ON tu.task_id = tasks.id
+            INNER JOIN users ON tu.user_id = users.id
+            WHERE tasks.id IN (
+                SELECT DISTINCT tu.task_id
+                FROM task_users tu
+                WHERE tu.user_id IN ({placeholders})
+            )
+            GROUP BY tasks.id
+        """
             cur.execute(stmt, executors_id)
             result = cur.fetchall()
             print("filter_by_users сработал корректно")
