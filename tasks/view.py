@@ -18,9 +18,15 @@ def show_tasks():
 
 
 @router.get("/filter_users")
-def test_func(executors_id: List[int] = Query(None)):
+def get_task_filter_by_users(executors_id: List[int] = Query(None)):
     tasks_filter_by_executors = Tasks.filter_from_users(executors_id)
     return tasks_filter_by_executors
+
+
+@router.get("/search_tasks")
+def search_tasks(query: str):
+    tasks = Tasks.search_tasks_by_query(query)
+    return tasks
 
 
 @router.get("/{status}")

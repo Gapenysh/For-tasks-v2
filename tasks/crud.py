@@ -302,3 +302,29 @@ class Tasks:
             return result
         except Error as e:
             return str(e)
+
+    @staticmethod
+    def search_tasks_by_query(query: str):
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt = """SELECT tasks.id,
+            tasks.title, 
+            tasks.detail, 
+            tasks.creation_date, 
+            tasks.execution_date, 
+            tasks.execution_mark,
+            GROUP_CONCAT(users.username ORDER BY users.username SEPARATOR ', ') AS executors
+            FROM task_users tu
+            INNER JOIN 
+            tasks ON tu.task_id = tasks.id
+            INNER JOIN 
+            users ON tu.user_id = users.id
+            WHERE MATCH(tasks.title) AGAINST(%s IN NATURAL LANGUAGE MODE)
+            GROUP BY tasks.id
+            """
+            cur.execute(stmt, (query,))
+            tasks = cur.fetchall()
+            return tasks
+        except Error as e:
+            return str(e)
