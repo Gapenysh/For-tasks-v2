@@ -1,5 +1,6 @@
 # Создай метод для вывода данных
 import datetime
+from typing import List
 
 from mysql.connector import Error
 from database import DataBaseConn
@@ -274,3 +275,30 @@ class Tasks:
         except Error as e:
             print("Ошибка удаление задачи: " + str(e))
             return None
+
+    @staticmethod
+    def filter_from_users(executors_id: List[int]):
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            placeholders = ", ".join(["%s"] * len(executors_id))
+            stmt = f"""SELECT tasks.id,
+            tasks.title, 
+            tasks.detail, 
+            tasks.creation_date, 
+            tasks.execution_date, 
+            tasks.execution_mark,
+            GROUP_CONCAT(users.username ORDER BY users.username SEPARATOR ', ') AS executors
+            FROM task_users tu
+            INNER JOIN 
+            tasks ON tu.task_id = tasks.id
+            INNER JOIN 
+            users ON tu.user_id = users.id
+            WHERE users.id IN ({placeholders})
+            GROUP BY tu.task_id"""
+            cur.execute(stmt, executors_id)
+            result = cur.fetchall()
+            print("filter_by_users сработал корректно")
+            return result
+        except Error as e:
+            return str(e)

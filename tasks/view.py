@@ -1,5 +1,7 @@
+from typing import List
+
 from tasks.crud import Tasks
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from fastapi.responses import StreamingResponse
 from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate
 from tasks.create_pdf import create_pdf
@@ -13,6 +15,12 @@ router = APIRouter(prefix="/tasks")
 def show_tasks():
     data = Tasks.get_tasks()
     return data
+
+
+@router.get("/filter_users")
+def test_func(executors_id: List[int] = Query(None)):
+    tasks_filter_by_executors = Tasks.filter_from_users(executors_id)
+    return tasks_filter_by_executors
 
 
 @router.get("/{status}")
@@ -90,13 +98,6 @@ def update_task(id: int, task: TaskUpdate):
 def show_task_from_id_redact_users(id: int):
     users = Tasks.get_users_from_task_id(id)
     return users
-
-
-# @router.get("/{id}/redact_users")
-# def show_task_from_id_redact_users(id: int):
-#     data = Tasks.get_task_by_id(id)
-#     print(data)
-#     return data
 
 
 @router.put("/{id}/redact_users")
