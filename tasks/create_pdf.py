@@ -1,5 +1,6 @@
 from io import BytesIO
 from reportlab.lib.pagesizes import letter
+from reportlab.lib.utils import simpleSplit
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
@@ -30,14 +31,18 @@ def create_pdf(data):
     c.setFont("Arial", 14)
 
     # Данные
-    c.drawString(50, begin - 60, title)
+    title_lines = simpleSplit(title, "Arial", 14, width - 100)
+    y_title = begin - 60
+    for line in title_lines:
+        c.drawString(50, y_title, line)
+        y_title -= 14
 
     # Определение количества исполнителей
     num_executors = len(executors)
     y_offset = 30  # Смещение между строками
 
     xlist = [50, 350, 550]
-    y_start = begin - 85
+    y_start = begin - 110
 
     # Создание сетки
     for i in range(num_executors + 2):  # +2 для заголовка и даты

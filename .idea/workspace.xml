@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Debug thr filter by users">
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Add filter for status and users">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/crud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/create_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/create_pdf.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728164363694</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Add filter for status and users">
+      <option name="closed" value="true" />
+      <created>1728413296756</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728413296756</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -280,6 +286,7 @@
     <MESSAGE value="Add filter by users" />
     <MESSAGE value="Add search for tasks" />
     <MESSAGE value="Debug thr filter by users" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug thr filter by users" />
+    <MESSAGE value="Add filter for status and users" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add filter for status and users" />
   </component>
 </project>
