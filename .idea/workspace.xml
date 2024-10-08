@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Add users and tasks delete functions, also checking existing id">
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Debug thr filter by users">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/crud.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/crud.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +53,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for view.test_func.executor&quot;: &quot;Run&quot;,
     &quot;Python.crud_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -112,8 +112,24 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for view.test_func" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="For_tasks_V2" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tasks" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;view.test_func&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for view.test_func" />
         <item itemvalue="Python.crud_test" />
       </list>
     </recent_temporary>
@@ -222,7 +238,31 @@
       <option name="project" value="LOCAL" />
       <updated>1727727351002</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add filter by users">
+      <option name="closed" value="true" />
+      <created>1728160860373</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728160860373</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add search for tasks">
+      <option name="closed" value="true" />
+      <created>1728163455258</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728163455258</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Debug thr filter by users">
+      <option name="closed" value="true" />
+      <created>1728164363694</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728164363694</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -237,6 +277,9 @@
     <MESSAGE value="Begin functional for sending pdf file" />
     <MESSAGE value="Add downloading pdf files" />
     <MESSAGE value="Add users and tasks delete functions, also checking existing id" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add users and tasks delete functions, also checking existing id" />
+    <MESSAGE value="Add filter by users" />
+    <MESSAGE value="Add search for tasks" />
+    <MESSAGE value="Debug thr filter by users" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug thr filter by users" />
   </component>
 </project>

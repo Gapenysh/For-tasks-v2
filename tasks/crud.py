@@ -288,7 +288,8 @@ class Tasks:
             tasks.creation_date,
             tasks.execution_date,
             tasks.execution_mark,
-            GROUP_CONCAT(users.username ORDER BY users.username SEPARATOR ', ') AS executors
+            GROUP_CONCAT(users.username ORDER BY users.username 
+            ) AS executors
             FROM task_users tu
             INNER JOIN tasks ON tu.task_id = tasks.id
             INNER JOIN users ON tu.user_id = users.id
@@ -330,4 +331,40 @@ class Tasks:
             tasks = cur.fetchall()
             return tasks
         except Error as e:
+            return str(e)
+
+    @staticmethod
+    def filter_from_users_status(status: str, executors_id: List[int]):
+        valid_status = {
+            "status1": "В очереди",
+            "status2": "В работе",
+            "status3": "Готово",
+        }
+
+        if status not in valid_status:
+            raise ValueError("Invalid status")
+
+        mark = valid_status[status]
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            placeholders = ", ".join(["%s"] * len(executors_id))
+
+            stmt = f"""SELECT tasks.id, tasks.title, tasks.execution_mark,
+            GROUP_CONCAT(users.username ORDER BY users.username) AS executors
+            FROM task_users tu
+            INNER JOIN tasks ON tu.task_id = tasks.id
+            INNER JOIN users ON tu.user_id = users.id
+            WHERE tasks.id IN (
+                SELECT DISTINCT tu.task_id
+                FROM task_users tu
+                WHERE tu.user_id IN ({placeholders})
+            )
+            GROUP BY tasks.id
+            HAVING tasks.execution_mark = %s"""
+            cur.execute(stmt, executors_id + [mark])
+            tasks_filter_status_users = cur.fetchall()
+            return tasks_filter_status_users
+        except Error as e:
+
             return str(e)

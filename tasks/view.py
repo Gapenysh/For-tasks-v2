@@ -133,3 +133,12 @@ def download_pdf(id: int):
         media_type="application/pdf",
         headers={"Content-Disposition": f"attachment; filename=task_{id}.pdf"},
     )
+
+
+@router.get("/{status}/filter_users")
+def get_task_filter_by_users_status(status: str, executors_id: List[int] = Query(None)):
+
+    tasks_filter_status_by_executors = Tasks.filter_from_users_status(
+        status, executors_id
+    )
+    return tasks_filter_status_by_executors

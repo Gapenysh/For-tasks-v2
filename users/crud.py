@@ -13,7 +13,7 @@ class Users:
         try:
             conn = DataBaseConn().connection
             cur = conn.cursor()
-            stmt_check_user = """SELECT COUNT(*) FROM tasks WHERE id = %s"""
+            stmt_check_user = """SELECT COUNT(*) FROM users WHERE id = %s"""
             cur.execute(stmt_check_user, (id,))
             user_exists = cur.fetchone()[0]
 
