@@ -350,7 +350,7 @@ class Tasks:
             cur = conn.cursor()
             placeholders = ", ".join(["%s"] * len(executors_id))
 
-            stmt = f"""SELECT tasks.id, tasks.title, tasks.execution_mark,
+            stmt = f"""SELECT tasks.id, tasks.title, tasks.detail, tasks.creation_date, tasks.execution_date, tasks.execution_mark,
             GROUP_CONCAT(users.username ORDER BY users.username) AS executors
             FROM task_users tu
             INNER JOIN tasks ON tu.task_id = tasks.id

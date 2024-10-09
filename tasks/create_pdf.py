@@ -35,14 +35,14 @@ def create_pdf(data):
     y_title = begin - 60
     for line in title_lines:
         c.drawString(50, y_title, line)
-        y_title -= 14
+        y_title -= 15
 
     # Определение количества исполнителей
     num_executors = len(executors)
     y_offset = 30  # Смещение между строками
 
     xlist = [50, 350, 550]
-    y_start = begin - 110
+    y_start = begin - 115
 
     # Создание сетки
     for i in range(num_executors + 2):  # +2 для заголовка и даты
