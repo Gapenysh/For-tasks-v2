@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, Query
 from fastapi.responses import StreamingResponse
 from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate
 from tasks.create_pdf import create_pdf
+from tasks.create_pdf_by_user import create_pdf_by_executor
 from users.crud import Users
 from users.schemas import UpdateTaskUsers
 
@@ -142,3 +143,20 @@ def get_task_filter_by_users_status(status: str, executors_id: List[int] = Query
         status, executors_id
     )
     return tasks_filter_status_by_executors
+
+
+@router.get("/{id}/user_tasks_pdf")
+def download_user_tasks_pdf(id: int):
+    tasks = Tasks.get_all_tasks_for_user(user_id=id)
+    if tasks is None:
+        return {"message": f"Tasks for executor with {id} not founded"}
+
+    file = create_pdf_by_executor(tasks)
+    print(f"Отправка задач пдф для {id} задачи")
+    return StreamingResponse(
+        file,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f"attachment; filename=task_for_user_with_{id}.pdf"
+        },
+    )

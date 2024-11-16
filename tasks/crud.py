@@ -215,7 +215,6 @@ class Tasks:
     def get_info_by_status(status):
 
         valid_status = {
-            "status1": "В очереди",
             "status2": "В работе",
             "status3": "Готово",
         }
@@ -368,3 +367,30 @@ class Tasks:
         except Error as e:
 
             return str(e)
+
+    @staticmethod
+    def get_all_tasks_for_user(user_id: int):
+
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt = f"""SELECT tasks.id, tasks.title, tasks.detail, tasks.creation_date, tasks.execution_date, tasks.execution_mark,
+                        GROUP_CONCAT(users.username ORDER BY users.username) AS executors
+                        FROM task_users tu
+                        INNER JOIN tasks ON tu.task_id = tasks.id
+                        INNER JOIN users ON tu.user_id = users.id
+                        WHERE tasks.id IN (
+                            SELECT DISTINCT tu.task_id
+                            FROM task_users tu
+                            WHERE tu.user_id IN (%s)
+                        )
+                        GROUP BY tasks.id
+                        HAVING tasks.execution_mark NOT IN ("Готово")"""
+            cur.execute(stmt, (user_id,))
+            tasks_for_users = cur.fetchall()
+
+            return tasks_for_users
+
+        except Error as e:
+            print(str(e))
+            return None

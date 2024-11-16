@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Debug filter by status and users. Final commit of develop version">
+      <change afterPath="$PROJECT_DIR$/tasks/create_pdf_by_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
