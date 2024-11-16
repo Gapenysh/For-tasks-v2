@@ -147,16 +147,22 @@ def get_task_filter_by_users_status(status: str, executors_id: List[int] = Query
 
 @router.get("/{id}/user_tasks_pdf")
 def download_user_tasks_pdf(id: int):
-    tasks = Tasks.get_all_tasks_for_user(user_id=id)
+    executor = Tasks.get_name_user_by_id(user_id=id)
+    tasks = Tasks.get_all_tasks_for_user_by_id(user_id=id)
     if tasks is None:
-        return {"message": f"Tasks for executor with {id} not founded"}
+        return {"message": f"Tasks for executor: {executor} not founded"}
+    print(tasks)
 
-    file = create_pdf_by_executor(tasks)
-    print(f"Отправка задач пдф для {id} задачи")
+    file = create_pdf_by_executor(tasks=tasks, username=executor)
+    print(f"Отправка всех задач в формате пдф для пользователя: {executor}")
     return StreamingResponse(
         file,
         media_type="application/pdf",
         headers={
-            "Content-Disposition": f"attachment; filename=task_for_user_with_{id}.pdf"
+            "Content-Disposition": f"attachment; filename=task_for_user_with_id_{id}.pdf".encode(
+                "utf-8"
+            ).decode(
+                "latin-1", errors="ignore"
+            )
         },
     )

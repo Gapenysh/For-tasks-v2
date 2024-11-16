@@ -369,7 +369,7 @@ class Tasks:
             return str(e)
 
     @staticmethod
-    def get_all_tasks_for_user(user_id: int):
+    def get_all_tasks_for_user_by_id(user_id: int):
 
         try:
             conn = DataBaseConn().connection
@@ -391,6 +391,21 @@ class Tasks:
 
             return tasks_for_users
 
+        except Error as e:
+            print(str(e))
+            return None
+
+    @staticmethod
+    def get_name_user_by_id(user_id: int):
+        try:
+            conn = DataBaseConn().connection
+            cur = conn.cursor()
+            stmt = """SELECT username FROM users WHERE id = %s"""
+            cur.execute(stmt, (user_id,))
+            result = cur.fetchone()
+            cur.close()
+            conn.close()
+            return result[0]
         except Error as e:
             print(str(e))
             return None

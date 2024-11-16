@@ -10,7 +10,7 @@ pdfmetrics.registerFont(TTFont("Arial", "arial.ttf"))
 pdfmetrics.registerFont(TTFont("Arial-Bold", "arialbd.ttf"))
 
 
-def create_pdf_by_executor(tasks):
+def create_pdf_by_executor(tasks, username):
 
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=letter)
@@ -21,7 +21,7 @@ def create_pdf_by_executor(tasks):
     c.setFont("Arial-Bold", 16)
 
     # Заголовок
-    c.drawString(160, begin, f"Сводка задач для исполнителя: {tasks[0][0]}")
+    c.drawString(20, begin, f"Сводка задач для исполнителя: {username}")
 
     c.setFont("Arial", 14)
 
@@ -35,10 +35,10 @@ def create_pdf_by_executor(tasks):
         create_date_str = task[3].strftime("%Y-%m-%d")
         exec_date_str = task[4].strftime("%Y-%m-%d")
         status = task[5]
-        executors = task[6].split(", ")
+        executors = task[6].split(",")
 
         # Заголовок задачи
-        c.setFont("Arial-Bold", 14)
+        c.setFont("Arial-Bold", 16)
         c.drawString(50, y_start, f"Задача №{id_task} от {create_date_str}")
 
         # Данные задачи
@@ -83,27 +83,27 @@ def create_pdf_by_executor(tasks):
                     xlist[0] + 15, y_start_task - (i + 2) * y_offset + 15, exec
                 )
 
-        if detail != "нет":
+        if detail != "нет" and detail != "string":
             c.drawString(50, y_start_task - (num_executors + 3) * y_offset - 55, detail)
 
         c.setFont("Arial-Bold", 14)
         c.drawString(
-            50, y_start_task - (num_executors + 4) * y_offset - 55, f"Статус: {status}"
+            50, y_start_task - (num_executors + 4) * y_offset + 50, f"Статус: {status}"
         )
 
         # Добавление подписей
         c.drawString(
-            350, y_start_task - (num_executors + 4) * y_offset - 55, "Подтверждаю: "
+            350, y_start_task - (num_executors + 4) * y_offset + 50, "Подтверждаю: "
         )
         c.drawString(
-            50, y_start_task - (num_executors + 5) * y_offset - 55, "Примечание: "
+            50, y_start_task - (num_executors + 5) * y_offset + 50, "Примечание: "
         )
 
-        y_start = y_start_task - (num_executors + 6) * y_offset - 55
+        y_start = y_start_task - (num_executors + 6) * y_offset + 20
 
-        if y_start < 50:
+        if y_start < 100:
             c.showPage()
-            y_start = height - 70
+            y_start = height - 35
 
     c.showPage()
     c.save()
