@@ -335,7 +335,6 @@ class Tasks:
     @staticmethod
     def filter_from_users_status(status: str, executors_id: List[int]):
         valid_status = {
-            "status1": "В очереди",
             "status2": "В работе",
             "status3": "Готово",
         }

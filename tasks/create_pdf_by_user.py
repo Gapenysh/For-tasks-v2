@@ -10,7 +10,7 @@ pdfmetrics.registerFont(TTFont("Arial", "arial.ttf"))
 pdfmetrics.registerFont(TTFont("Arial-Bold", "arialbd.ttf"))
 
 
-def create_pdf_by_executor(tasks, username):
+def create_pdf_by_executor(tasks, username, counter):
 
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=letter)
@@ -21,14 +21,15 @@ def create_pdf_by_executor(tasks, username):
     c.setFont("Arial-Bold", 16)
 
     # Заголовок
-    c.drawString(20, begin, f"Сводка задач для исполнителя: {username}")
+    c.drawString(200, begin, f"Контрольная карточка №{counter}")
+    c.drawString(40, begin - 25, f"Сводка задач для исполнителя: {username}")
 
     c.setFont("Arial", 14)
 
     y_offset = 30  # Смещение между строками
     y_start = begin - 60
 
-    for task in tasks:
+    for i, task in enumerate(tasks):
         id_task = task[0]
         title = task[1]
         detail = task[2]
@@ -39,7 +40,7 @@ def create_pdf_by_executor(tasks, username):
 
         # Заголовок задачи
         c.setFont("Arial-Bold", 16)
-        c.drawString(50, y_start, f"Задача №{id_task} от {create_date_str}")
+        c.drawString(50, y_start, f"Задача №{i + 1} от {create_date_str}")
 
         # Данные задачи
         c.setFont("Arial", 14)

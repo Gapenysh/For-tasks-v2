@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Add function for getting pdf file about tasks of executor">
-      <change beforePath="$PROJECT_DIR$/.idea/For_tasks_V2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/For_tasks_V2.iml" afterDir="false" />
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="beta version of pdf file about tasks for user">
+      <change afterPath="$PROJECT_DIR$/tasks/counter_of_download.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/create_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/create_pdf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/create_pdf_by_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/create_pdf_by_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/crud.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
@@ -295,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731750275623</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="beta version of pdf file about tasks for user">
+      <option name="closed" value="true" />
+      <created>1731795080114</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1731795080115</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -317,6 +326,7 @@
     <MESSAGE value="Debug the title text in pdf-file" />
     <MESSAGE value="Debug filter by status and users. Final commit of develop version" />
     <MESSAGE value="Add function for getting pdf file about tasks of executor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add function for getting pdf file about tasks of executor" />
+    <MESSAGE value="beta version of pdf file about tasks for user" />
+    <option name="LAST_COMMIT_MESSAGE" value="beta version of pdf file about tasks for user" />
   </component>
 </project>

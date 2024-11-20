@@ -9,7 +9,7 @@ pdfmetrics.registerFont(TTFont("Arial", "arial.ttf"))
 pdfmetrics.registerFont(TTFont("Arial-Bold", "arialbd.ttf"))
 
 
-def create_pdf(data):
+def create_pdf(data, counter):
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=letter)
     width, height = letter
@@ -26,7 +26,7 @@ def create_pdf(data):
     c.setFont("Arial-Bold", 16)
 
     # Заголовок
-    c.drawString(160, begin, f"Контрольная карточка №{id_task} от {create_date_str}")
+    c.drawString(160, begin, f"Контрольная карточка №{counter} от {create_date_str}")
 
     c.setFont("Arial", 14)
 
@@ -66,8 +66,8 @@ def create_pdf(data):
         if executor is not None:
             c.drawString(xlist[0] + 15, y_start - (i + 2) * y_offset + 15, executor)
 
-    if detail != "нет":
-        c.drawString(50, begin - (num_executors + 3) * y_offset - 55, detail)
+    # if detail != "нет":
+    #     c.drawString(50, begin - (num_executors + 3) * y_offset - 55, detail)
 
     c.setFont("Arial-Bold", 14)
     c.drawString(50, begin - (num_executors + 4) * y_offset - 55, f"Статус: {status}")
