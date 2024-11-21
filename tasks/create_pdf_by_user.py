@@ -40,7 +40,9 @@ def create_pdf_by_executor(tasks, username, counter):
 
         # Заголовок задачи
         c.setFont("Arial-Bold", 16)
-        c.drawString(50, y_start, f"Задача №{i + 1} от {create_date_str}")
+        c.drawString(
+            50, y_start, f"Задача №{i + 1} от {create_date_str} до {exec_date_str}"
+        )
 
         # Данные задачи
         c.setFont("Arial", 14)
@@ -50,57 +52,7 @@ def create_pdf_by_executor(tasks, username, counter):
             c.drawString(50, y_title, line)
             y_title -= 15
 
-        # Определение количества исполнителей
-        num_executors = len(executors)
-        xlist = [50, 350, 550]
-        y_start_task = y_start - 60
-
-        # Создание сетки
-        for i in range(num_executors + 2):  # +2 для заголовка и даты
-            c.line(
-                xlist[0],
-                y_start_task - i * y_offset,
-                xlist[-1],
-                y_start_task - i * y_offset,
-            )
-        for x in xlist:
-            c.line(
-                x, y_start_task - (num_executors + 1) * y_offset, x, y_start_task
-            )  # Вертикальные линии
-
-        # Заголовки для исполнителей и даты
-        c.setFont("Arial-Bold", 14)
-        c.drawString(150, y_start_task - 15, "Исполнители")
-        c.drawString(400, y_start_task - 15, "Дата исполнения")
-
-        # Вставляем дату исполнения
-        c.setFont("Arial", 14)
-        c.drawString(420, y_start_task - 45, exec_date_str)
-
-        # Вставляем исполнителей в сетку
-        for i, exec in enumerate(executors):
-            if exec is not None:
-                c.drawString(
-                    xlist[0] + 15, y_start_task - (i + 2) * y_offset + 15, exec
-                )
-
-        if detail != "нет" and detail != "string":
-            c.drawString(50, y_start_task - (num_executors + 3) * y_offset - 55, detail)
-
-        c.setFont("Arial-Bold", 14)
-        c.drawString(
-            50, y_start_task - (num_executors + 4) * y_offset + 50, f"Статус: {status}"
-        )
-
-        # Добавление подписей
-        c.drawString(
-            350, y_start_task - (num_executors + 4) * y_offset + 50, "Подтверждаю: "
-        )
-        c.drawString(
-            50, y_start_task - (num_executors + 5) * y_offset + 50, "Примечание: "
-        )
-
-        y_start = y_start_task - (num_executors + 6) * y_offset + 20
+        y_start -= y_offset * 3
 
         if y_start < 100:
             c.showPage()
