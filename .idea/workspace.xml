@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Версия перед деплоем">
-      <change afterPath="$PROJECT_DIR$/карточки.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Сделал новую папку для хранения requirements.txt и дамп">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/counter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/counter.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +64,7 @@
       <recent name="C:\Users\bulat\PycharmProject\For_tasks_V2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bulat\PycharmProject\For_tasks_V2\дампы_зависимости" />
       <recent name="C:\Users\bulat\PycharmProject\For_tasks_V2" />
     </key>
   </component>
@@ -322,8 +319,27 @@
       <option name="project" value="LOCAL" />
       <updated>1732196364065</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Сделал новую папку для хранения requirements.txt и дамп">
+      <option name="closed" value="true" />
+      <created>1737316000032</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1737316000032</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Begin creating structure for api with MYSQL" />
@@ -347,6 +363,7 @@
     <MESSAGE value="beta version of pdf file about tasks for user" />
     <MESSAGE value="Добавил порядковый номер для карточек" />
     <MESSAGE value="Версия перед деплоем" />
-    <option name="LAST_COMMIT_MESSAGE" value="Версия перед деплоем" />
+    <MESSAGE value="Сделал новую папку для хранения requirements.txt и дамп" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделал новую папку для хранения requirements.txt и дамп" />
   </component>
 </project>
