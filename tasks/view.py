@@ -1,12 +1,11 @@
 from typing import List
 
 from tasks.crud import Tasks
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Query
 from fastapi.responses import StreamingResponse
-from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate
+from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate, TaskPDFDownload
 from tasks.create_pdf import create_pdf
 from tasks.create_pdf_by_user import create_pdf_by_executor
-from users.crud import Users
 from users.schemas import UpdateTaskUsers
 from tasks.counter_of_download import read_file_counter, write_file_counter
 
@@ -122,8 +121,8 @@ def update_task_executors(id: int, users: UpdateTaskUsers):
         return {"message": "Failed to update task"}
 
 
-@router.get("/{id}/download")
-def download_pdf(id: int):
+@router.post("/{id}/download")
+def download_pdf(id: int, download_setting: TaskPDFDownload):
     counter = read_file_counter()
     counter += 1
     write_file_counter(counter)
@@ -131,13 +130,17 @@ def download_pdf(id: int):
     if task is None:
         return {"message": f"Task with id = {id} not found"}
 
-    file = create_pdf(task, counter)
+    file = create_pdf(task, counter, download_setting.text_size)
 
     print(f"Отправка пдф для {id} задачи")
     return StreamingResponse(
         file,
         media_type="application/pdf",
-        headers={"Content-Disposition": f"attachment; filename=task_{id}.pdf"},
+        headers={
+            "Content-Disposition": f"attachment; filename=KP_{counter}.pdf".encode(
+                "utf-8"
+            ).decode("latin-1", errors="strict")
+        },
     )
 
 
@@ -150,8 +153,8 @@ def get_task_filter_by_users_status(status: str, executors_id: List[int] = Query
     return tasks_filter_status_by_executors
 
 
-@router.get("/{id}/user_tasks_pdf")
-def download_user_tasks_pdf(id: int):
+@router.post("/{id}/user_tasks_pdf")
+def download_user_tasks_pdf(id: int, download_setting: TaskPDFDownload):
     counter = read_file_counter()
     counter += 1
     write_file_counter(counter)
@@ -163,16 +166,19 @@ def download_user_tasks_pdf(id: int):
         return {"message": f"Tasks for executor: {executor} not founded"}
     print(tasks)
 
-    file = create_pdf_by_executor(tasks=tasks, username=executor, counter=counter)
+    file = create_pdf_by_executor(
+        tasks=tasks,
+        username=executor,
+        counter=counter,
+        text_size=download_setting.text_size,
+    )
     print(f"Отправка всех задач в формате пдф для пользователя: {executor}")
     return StreamingResponse(
         file,
         media_type="application/pdf",
         headers={
-            "Content-Disposition": f"attachment; filename=task_for_user_with_id_{id}.pdf".encode(
+            "Content-Disposition": f"attachment; filename=KP_{counter}.pdf".encode(
                 "utf-8"
-            ).decode(
-                "latin-1", errors="ignore"
-            )
+            ).decode("latin_1", errors="strict")
         },
     )

@@ -1,5 +1,3 @@
-# Создай метод для вывода данных
-import datetime
 from typing import List
 
 from mysql.connector import Error

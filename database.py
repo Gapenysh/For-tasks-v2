@@ -1,9 +1,7 @@
-from users.view import router as users_router
-from fastapi import FastAPI
 from mysql.connector import connect
 import os
 from dotenv import load_dotenv
-import pymysql
+
 
 origins = [
     "http://localhost:4200",

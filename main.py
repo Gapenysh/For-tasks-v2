@@ -1,9 +1,7 @@
-import multiprocessing
-from contextlib import asynccontextmanager
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-from database import origins
+
 from users.view import router as users_router
 from tasks.view import router as tasks_router
 from database import origins

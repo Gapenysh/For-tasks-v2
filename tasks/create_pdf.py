@@ -9,7 +9,7 @@ pdfmetrics.registerFont(TTFont("Arial", "arial.ttf"))
 pdfmetrics.registerFont(TTFont("Arial-Bold", "arialbd.ttf"))
 
 
-def create_pdf(data, counter):
+def create_pdf(data, counter, text_size):
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=letter)
     width, height = letter
@@ -23,15 +23,15 @@ def create_pdf(data, counter):
     executors = data[6].split(", ")
 
     # Установка шрифта
-    c.setFont("Arial-Bold", 16)
+    c.setFont("Arial-Bold", text_size + 2)
 
     # Заголовок
     c.drawString(160, begin, f"Контрольная карточка №{counter} от {create_date_str}")
 
-    c.setFont("Arial", 14)
+    c.setFont("Arial", text_size)
 
     # Данные
-    title_lines = simpleSplit(title, "Arial", 14, width - 100)
+    title_lines = simpleSplit(title, "Arial", text_size, width - 100)
     y_title = begin - 60
     for line in title_lines:
         c.drawString(50, y_title, line)
@@ -53,12 +53,12 @@ def create_pdf(data, counter):
         )  # Вертикальные линии
 
     # Заголовки для исполнителей и даты
-    c.setFont("Arial-Bold", 14)
+    c.setFont("Arial-Bold", text_size)
     c.drawString(150, y_start - 15, "Исполнители")
     c.drawString(400, y_start - 15, "Дата исполнения")
 
     # Вставляем дату исполнения
-    c.setFont("Arial", 14)
+    c.setFont("Arial", text_size)
     c.drawString(420, y_start - 45, exec_date_str)
 
     # Вставляем исполнителей в сетку
@@ -69,7 +69,7 @@ def create_pdf(data, counter):
     # if detail != "нет":
     #     c.drawString(50, begin - (num_executors + 3) * y_offset - 55, detail)
 
-    c.setFont("Arial-Bold", 14)
+    c.setFont("Arial-Bold", text_size)
     c.drawString(50, begin - (num_executors + 4) * y_offset - 55, f"Статус: {status}")
 
     # Добавление подписей

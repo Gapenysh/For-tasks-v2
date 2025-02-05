@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import datetime
-from typing import Annotated, Optional
+from typing import Annotated, Optional, ClassVar
 from annotated_types import MaxLen, MinLen
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, Field
 
 
 class Task(BaseModel):
@@ -26,3 +26,7 @@ class TaskUpdate(BaseModel):
 
 class TaskStatusUpdate(BaseModel):
     status: Optional[Annotated[str, MinLen(6), MaxLen(10)]]
+
+
+class TaskPDFDownload(BaseModel):
+    text_size: Optional[int] = 14

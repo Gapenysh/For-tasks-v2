@@ -10,7 +10,7 @@ pdfmetrics.registerFont(TTFont("Arial", "arial.ttf"))
 pdfmetrics.registerFont(TTFont("Arial-Bold", "arialbd.ttf"))
 
 
-def create_pdf_by_executor(tasks, username, counter):
+def create_pdf_by_executor(tasks, username, counter, text_size):
 
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=letter)
@@ -18,13 +18,13 @@ def create_pdf_by_executor(tasks, username, counter):
     begin = height - 70
 
     # Установка шрифта
-    c.setFont("Arial-Bold", 16)
+    c.setFont("Arial-Bold", text_size + 2)
 
     # Заголовок
     c.drawString(200, begin, f"Контрольная карточка №{counter}")
     c.drawString(40, begin - 25, f"Сводка задач для исполнителя: {username}")
 
-    c.setFont("Arial", 14)
+    c.setFont("Arial", text_size)
 
     y_offset = 30  # Смещение между строками
     y_start = begin - 60
@@ -39,14 +39,14 @@ def create_pdf_by_executor(tasks, username, counter):
         executors = task[6].split(",")
 
         # Заголовок задачи
-        c.setFont("Arial-Bold", 16)
+        c.setFont("Arial-Bold", text_size + 2)
         c.drawString(
             50, y_start, f"Задача №{i + 1} от {create_date_str} до {exec_date_str}"
         )
 
         # Данные задачи
-        c.setFont("Arial", 14)
-        title_lines = simpleSplit(title, "Arial", 14, width - 100)
+        c.setFont("Arial", text_size)
+        title_lines = simpleSplit(title, "Arial", text_size, width - 100)
         y_title = y_start - 30
         for line in title_lines:
             c.drawString(50, y_title, line)
