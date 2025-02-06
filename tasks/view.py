@@ -135,10 +135,9 @@ def download_pdf(id: int, download_setting: TaskPDFDownload):
 
     print(f"Отправка пдф для {id} задачи")
     headers = {
-        "Content-Disposition": f"attachment; filename=KP_{counter}.pdf".encode(
-            "utf-8"
-        ).decode("utf-8", errors="strict"),
-        "X-counter": str(counter),  # Добавляем counter в заголовки
+        "Content-Disposition": f"attachment; filename=KP_{str(counter)}.pdf",
+        "Access-Control-Expose-Headers": "Content-Disposition",
+        "X-count": str(counter),  # Разрешаем доступ к заголовку Content-Disposition
     }
 
     return StreamingResponse(file, media_type="application/pdf", headers=headers)
@@ -159,10 +158,12 @@ def download_user_tasks_pdf(id: int, download_setting: TaskPDFDownload):
     counter += 1
     write_file_counter(counter)
     executor = Tasks.get_name_user_by_id(user_id=id)
-    tasks = Tasks.get_all_tasks_for_user_by_id(user_id=id)
-
+    tasks = Tasks.get_all_tasks_for_user_by_id(
+        user_id=id,
+    )
     if tasks is None:
         return {"message": f"Tasks for executor: {executor} not founded"}
+    print(tasks)
 
     file = create_pdf_by_executor(
         tasks=tasks,
@@ -170,12 +171,11 @@ def download_user_tasks_pdf(id: int, download_setting: TaskPDFDownload):
         counter=counter,
         text_size=download_setting.text_size,
     )
-
+    print(f"Отправка всех задач в формате пдф для пользователя: {executor}")
     headers = {
-        "Content-Disposition": f"attachment; filename=KP_{counter}.pdf".encode(
-            "utf-8"
-        ).decode("utf-8", errors="strict"),
-        "X-counter": str(counter),  # Добавляем counter в заголовки
+        "Content-Disposition": f"attachment; filename=KP_{str(counter)}.pdf",
+        "Access-Control-Expose-Headers": "Content-Disposition",
+        "X-count": str(counter),  # Разрешаем доступ к заголовку Content-Disposition
     }
 
     return StreamingResponse(file, media_type="application/pdf", headers=headers)
