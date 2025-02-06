@@ -1,6 +1,5 @@
 # Создай метод для вывода данных
 
-
 from mysql.connector import Error
 
 
