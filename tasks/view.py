@@ -134,15 +134,14 @@ def download_pdf(id: int, download_setting: TaskPDFDownload):
     file = create_pdf(task, counter, download_setting.text_size)
 
     print(f"Отправка пдф для {id} задачи")
-    return StreamingResponse(
-        file,
-        media_type="application/pdf",
-        headers={
-            "Content-Disposition": f"attachment; filename=KP_{counter}.pdf".encode(
-                "utf-8"
-            ).decode("latin-1", errors="strict")
-        },
-    )
+    headers = {
+        "Content-Disposition": f"attachment; filename=KP_{counter}.pdf".encode(
+            "utf-8"
+        ).decode("utf-8", errors="strict"),
+        "X-counter": str(counter),  # Добавляем counter в заголовки
+    }
+
+    return StreamingResponse(file, media_type="application/pdf", headers=headers)
 
 
 @router.get("/{status}/filter_users")
@@ -160,12 +159,10 @@ def download_user_tasks_pdf(id: int, download_setting: TaskPDFDownload):
     counter += 1
     write_file_counter(counter)
     executor = Tasks.get_name_user_by_id(user_id=id)
-    tasks = Tasks.get_all_tasks_for_user_by_id(
-        user_id=id,
-    )
+    tasks = Tasks.get_all_tasks_for_user_by_id(user_id=id)
+
     if tasks is None:
         return {"message": f"Tasks for executor: {executor} not founded"}
-    print(tasks)
 
     file = create_pdf_by_executor(
         tasks=tasks,
@@ -173,13 +170,12 @@ def download_user_tasks_pdf(id: int, download_setting: TaskPDFDownload):
         counter=counter,
         text_size=download_setting.text_size,
     )
-    print(f"Отправка всех задач в формате пдф для пользователя: {executor}")
-    return StreamingResponse(
-        file,
-        media_type="application/pdf",
-        headers={
-            "Content-Disposition": f"attachment; filename=KP_{counter}.pdf".encode(
-                "utf-8"
-            ).decode("latin_1", errors="strict")
-        },
-    )
+
+    headers = {
+        "Content-Disposition": f"attachment; filename=KP_{counter}.pdf".encode(
+            "utf-8"
+        ).decode("utf-8", errors="strict"),
+        "X-counter": str(counter),  # Добавляем counter в заголовки
+    }
+
+    return StreamingResponse(file, media_type="application/pdf", headers=headers)
