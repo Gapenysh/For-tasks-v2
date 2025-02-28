@@ -8,24 +8,25 @@ from pydantic import BaseModel, Field
 
 
 class Task(BaseModel):
-    title: Annotated[str, MinLen(5), MaxLen(600)]
+    title: Annotated[str, MinLen(3), MaxLen(600)]
     detail: Optional[str]
     creation_date: datetime.date
     execution_date: datetime.date
-    execution_mark: Annotated[str, MinLen(6), MaxLen(10)]
+    execution_mark: Annotated[str, MinLen(3), MaxLen(15)]
     executors: list[int]
 
 
 class TaskUpdate(BaseModel):
-    title: Optional[Annotated[str, MinLen(5), MaxLen(600)]]
+    title: Optional[Annotated[str, MinLen(3), MaxLen(600)]]
     detail: Optional[str]
     creation_date: Optional[datetime.date]
     execution_date: Optional[datetime.date]
-    execution_mark: Optional[Annotated[str, MinLen(6), MaxLen(10)]]
+    execution_mark: Optional[Annotated[str, MinLen(3), MaxLen(15)]]
+    executors: list[int]
 
 
 class TaskStatusUpdate(BaseModel):
-    status: Optional[Annotated[str, MinLen(6), MaxLen(10)]]
+    status: Optional[Annotated[str, MinLen(3), MaxLen(15)]]
 
 
 class TaskPDFDownload(BaseModel):

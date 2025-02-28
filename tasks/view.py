@@ -96,7 +96,17 @@ def update_task(id: int, task: TaskUpdate):
     )
     task_from_id = show_task_from_id(id)
     if success:
-        return {"message": "Task updated successfully", "task_from_id": task_from_id}
+        success_update_executors = Tasks.update_task_executors(
+            id=id,
+            executors=task.executors,
+        )
+        if success_update_executors:
+            return {
+                "message": "Task updated successfully",
+                "task_from_id": task_from_id,
+            }
+        else:
+            return {"message": "Executors was not updated"}
     else:
         return {"message": "Failed to update task"}
 

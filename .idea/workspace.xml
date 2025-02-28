@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="Сделал новую папку для хранения requirements.txt и дамп">
-      <change beforePath="$PROJECT_DIR$/counter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/counter.txt" afterDir="false" />
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="вместе с файлом теперь передается и порядковый номер">
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/schemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,12 +31,12 @@
     &quot;assignee&quot;: &quot;Gapenysh&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:Gapenysh/For-tasks-v2.git",
-    "accountId": "47577a8a-4676-45fe-ac78-aebaa9d50de4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Gapenysh/For-tasks-v2.git&quot;,
+    &quot;accountId&quot;: &quot;47577a8a-4676-45fe-ac78-aebaa9d50de4&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/core/models/user.py" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -352,7 +354,31 @@
       <option name="project" value="LOCAL" />
       <updated>1737318305811</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Обновил mysql-connector">
+      <option name="closed" value="true" />
+      <created>1738845061035</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1738845061035</updated>
+    </task>
+    <task id="LOCAL-00027" summary="вместе с файлом теперь передается и порядковый номер">
+      <option name="closed" value="true" />
+      <created>1738846718199</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1738846718199</updated>
+    </task>
+    <task id="LOCAL-00028" summary="вместе с файлом теперь передается и порядковый номер">
+      <option name="closed" value="true" />
+      <created>1738855149155</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1738855149155</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -389,6 +415,8 @@
     <MESSAGE value="Добавил порядковый номер для карточек" />
     <MESSAGE value="Версия перед деплоем" />
     <MESSAGE value="Сделал новую папку для хранения requirements.txt и дамп" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделал новую папку для хранения requirements.txt и дамп" />
+    <MESSAGE value="Обновил mysql-connector" />
+    <MESSAGE value="вместе с файлом теперь передается и порядковый номер" />
+    <option name="LAST_COMMIT_MESSAGE" value="вместе с файлом теперь передается и порядковый номер" />
   </component>
 </project>
