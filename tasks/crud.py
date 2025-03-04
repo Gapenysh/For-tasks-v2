@@ -89,7 +89,7 @@ class Tasks:
                     WHERE task_users.task_id = %s"""
             cur.execute(stmt, (id,))
             result = cur.fetchall()
-            print("Исполнители из задачи id = {id} были отправлены")
+            print(f"Исполнители из задачи id = {id} были отправлены")
             return result
         except Error as e:
             return str(e)
@@ -366,13 +366,13 @@ class Tasks:
             return str(e)
 
     @staticmethod
-    def get_all_tasks_for_user_by_id(user_id: int):
+    def get_all_not_finished_tasks_for_user_by_id(user_id: int):
 
         try:
             conn = DataBaseConn().connection
             cur = conn.cursor()
             stmt = f"""SELECT tasks.id, tasks.title, tasks.detail, tasks.creation_date, tasks.execution_date, tasks.execution_mark,
-                        GROUP_CONCAT(users.username ORDER BY users.username) AS executors
+                        GROUP_CONCAT(users.username SEPARATOR', ') AS executors
                         FROM task_users tu
                         INNER JOIN tasks ON tu.task_id = tasks.id
                         INNER JOIN users ON tu.user_id = users.id

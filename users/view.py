@@ -1,5 +1,5 @@
 from users.crud import Users
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from users.schemas import User
 
 router = APIRouter(prefix="/users")
@@ -8,7 +8,10 @@ router = APIRouter(prefix="/users")
 @router.get("/")
 def get_users():
     data = Users.get_users()
-    return data
+    if data:
+        return data
+    else:
+        raise HTTPException(status_code=404, detail="Users not found")
 
 
 @router.post("/create")

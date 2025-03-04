@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class User(BaseModel):
-    username: Annotated[str, MinLen(5), MaxLen(50)]
+    username: Annotated[str, MinLen(3), MaxLen(50)]
 
 
 class UpdateTaskUsers(BaseModel):

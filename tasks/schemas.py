@@ -30,4 +30,4 @@ class TaskStatusUpdate(BaseModel):
 
 
 class TaskPDFDownload(BaseModel):
-    text_size: Optional[int] = 14
+    font_size: Optional[int] = 14

@@ -17,8 +17,8 @@ def create_pdf(data, counter, text_size):
     id_task = data[0]
     title = data[1]
     detail = data[2]
-    create_date_str = data[3].strftime("%Y-%m-%d")
-    exec_date_str = data[4].strftime("%Y-%m-%d")
+    create_date_str = data[3].strftime("%d.%m.%Y")
+    exec_date_str = data[4].strftime("%d.%m.%Y")
     status = data[5]
     executors = data[6].split(", ")
 
@@ -26,7 +26,14 @@ def create_pdf(data, counter, text_size):
     c.setFont("Arial-Bold", text_size + 2)
 
     # Заголовок
-    c.drawString(160, begin, f"Контрольная карточка №{counter} от {create_date_str}")
+    if text_size >= 20:
+        c.drawString(
+            120, begin, f"Контрольная карточка №{counter} от {create_date_str}"
+        )
+    else:
+        c.drawString(
+            160, begin, f"Контрольная карточка №{counter} от {create_date_str}"
+        )
 
     c.setFont("Arial", text_size)
 
@@ -55,7 +62,10 @@ def create_pdf(data, counter, text_size):
     # Заголовки для исполнителей и даты
     c.setFont("Arial-Bold", text_size)
     c.drawString(150, y_start - 15, "Исполнители")
-    c.drawString(400, y_start - 15, "Дата исполнения")
+    if text_size >= 20:
+        c.drawString(370, y_start - 15, "Дата исполнения")
+    else:
+        c.drawString(400, y_start - 15, "Дата исполнения")
 
     # Вставляем дату исполнения
     c.setFont("Arial", text_size)

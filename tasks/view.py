@@ -1,10 +1,11 @@
 from typing import List
 
 from tasks.crud import Tasks
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, HTTPException
 from fastapi.responses import StreamingResponse
 from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate, TaskPDFDownload
 from tasks.create_pdf import create_pdf
+from tasks.create_pdf_for_user_by_template import generate_pdf_from_html_template
 from tasks.create_pdf_by_user import create_pdf_by_executor
 from users.schemas import UpdateTaskUsers
 from tasks.counter_of_download import read_file_counter, write_file_counter
@@ -86,6 +87,7 @@ def delete_task(id: int):
 @router.put("/{id}/redact")
 def update_task(id: int, task: TaskUpdate):
 
+    print("Execution Date: ", task.execution_date)
     success = Tasks.update_task(
         id=id,
         title=task.title,
@@ -112,7 +114,7 @@ def update_task(id: int, task: TaskUpdate):
 
 
 @router.get("/{id}/redact_users")
-def show_task_from_id_redact_users(id: int):
+def show_users_for_task_from_task_id(id: int):
     users = Tasks.get_users_from_task_id(id)
     return users
 
@@ -141,7 +143,7 @@ def download_pdf(id: int, download_setting: TaskPDFDownload):
     if task is None:
         return {"message": f"Task with id = {id} not found"}
 
-    file = create_pdf(task, counter, download_setting.text_size)
+    file = create_pdf(task, counter, download_setting.font_size)
 
     print(f"Отправка пдф для {id} задачи")
     headers = {
@@ -163,25 +165,32 @@ def get_task_filter_by_users_status(status: str, executors_id: List[int] = Query
 
 
 @router.post("/{id}/user_tasks_pdf")
-def download_user_tasks_pdf(id: int, download_setting: TaskPDFDownload):
+def download_not_finished_user_tasks_pdf_by_user_id(
+    id: int, download_setting: TaskPDFDownload
+):
     counter = read_file_counter()
     counter += 1
     write_file_counter(counter)
-    executor = Tasks.get_name_user_by_id(user_id=id)
-    tasks = Tasks.get_all_tasks_for_user_by_id(
+    executor_name = Tasks.get_name_user_by_id(user_id=id)
+    if not executor_name:
+        raise HTTPException(
+            status_code=404, detail=f"Executor: {executor_name} not found"
+        )
+    tasks = Tasks.get_all_not_finished_tasks_for_user_by_id(
         user_id=id,
     )
-    if tasks is None:
-        return {"message": f"Tasks for executor: {executor} not founded"}
-    print(tasks)
+    if not tasks:
+        raise HTTPException(
+            status_code=404, detail=f"Tasks for executor: {executor_name} not found"
+        )
 
-    file = create_pdf_by_executor(
+    file = generate_pdf_from_html_template(
         tasks=tasks,
-        username=executor,
         counter=counter,
-        text_size=download_setting.text_size,
+        username=executor_name,
+        font_size=download_setting.font_size,
     )
-    print(f"Отправка всех задач в формате пдф для пользователя: {executor}")
+    print(f"Отправка по шаблону html задач пользователя: {executor_name}")
     headers = {
         "Content-Disposition": f"attachment; filename=KP_{str(counter)}.pdf",
         "Access-Control-Expose-Headers": "Content-Disposition",
