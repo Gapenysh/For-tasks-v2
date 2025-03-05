@@ -6,7 +6,6 @@ from fastapi.responses import StreamingResponse
 from tasks.schemas import Task, TaskUpdate, TaskStatusUpdate, TaskPDFDownload
 from tasks.create_pdf import create_pdf
 from tasks.create_pdf_for_user_by_template import generate_pdf_from_html_template
-from tasks.create_pdf_by_user import create_pdf_by_executor
 from users.schemas import UpdateTaskUsers
 from tasks.counter_of_download import read_file_counter, write_file_counter
 
