@@ -1,24 +1,10 @@
 from mysql.connector import connect
-import os
-from dotenv import load_dotenv
 
 
-origins = [
-    "http://localhost:4200",
-]
-
-load_dotenv()
-
-username = "root"
-password = os.getenv("PASSWORD")
-hostname = os.getenv("HOSTNAME")
-databasename = os.getenv("DATABASENAME")
-
-
-print(username)
-print(password)
-print(hostname)
-print(databasename)
+username = "zilant"
+password = "111111"
+hostname = "192.168.88.81"
+databasename = "v2_tasks_db"
 
 
 class DataBaseConn:

@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="объединил в один обработчик обновление параметров и исполнителей">
-      <change afterPath="$PROJECT_DIR$/tasks/create_pdf_for_user_by_template.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tasks/templates/template.html" afterDir="false" />
+    <list default="true" id="88641ac6-659b-4e15-ac32-c3611c6b73fc" name="Changes" comment="убрал импорт несуществующего файла">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/counter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/counter.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/create_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/create_pdf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/crud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,19 +53,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python tests.Python tests for view.test_func.executor": "Run",
-    "Python.create_pdf_for_user_by_template.executor": "Run",
-    "Python.crud_test.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/bulat/PycharmProject/For_tasks_V2",
-    "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python tests.Python tests for view.test_func.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_pdf_for_user_by_template.executor&quot;: &quot;Run&quot;,
+    &quot;Python.crud_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bulat/PycharmProject/For_tasks_V2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.black.configuration.BlackFormatterConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bulat\PycharmProject\For_tasks_V2" />
@@ -421,7 +413,31 @@
       <option name="project" value="LOCAL" />
       <updated>1740770475143</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="сделал по новому pdf файл для всех задач по исполнителям, также поменял формат времени в pdf файле для отдельной задачи">
+      <option name="closed" value="true" />
+      <created>1741122628609</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1741122628609</updated>
+    </task>
+    <task id="LOCAL-00031" summary="сделал по новому pdf файл для всех задач по исполнителям, также поменял формат времени в pdf файле для отдельной задачи">
+      <option name="closed" value="true" />
+      <created>1741122637442</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1741122637442</updated>
+    </task>
+    <task id="LOCAL-00032" summary="убрал импорт несуществующего файла">
+      <option name="closed" value="true" />
+      <created>1741193131447</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1741193131447</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -436,8 +452,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Begin creating structure for api with MYSQL" />
-    <MESSAGE value="Add schemas for create requests" />
     <MESSAGE value="Make functions for view and creating (users, tasks)" />
     <MESSAGE value="Add schema for updating task and create function for updating(also getting info from id)" />
     <MESSAGE value="Rename shemas" />
@@ -461,7 +475,9 @@
     <MESSAGE value="Обновил mysql-connector" />
     <MESSAGE value="вместе с файлом теперь передается и порядковый номер" />
     <MESSAGE value="объединил в один обработчик обновление параметров и исполнителей" />
-    <option name="LAST_COMMIT_MESSAGE" value="объединил в один обработчик обновление параметров и исполнителей" />
+    <MESSAGE value="сделал по новому pdf файл для всех задач по исполнителям, также поменял формат времени в pdf файле для отдельной задачи" />
+    <MESSAGE value="убрал импорт несуществующего файла" />
+    <option name="LAST_COMMIT_MESSAGE" value="убрал импорт несуществующего файла" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
